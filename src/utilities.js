@@ -5,7 +5,7 @@ export const drawRect = (detections, ctx) => {
     const label = detection.class;
 
     // Styling
-    const color = "green";
+    const color = "blue";
     ctx.strokeStyle = color;
     ctx.font = "16px Arial";
     ctx.fillStyle = color;
@@ -13,6 +13,6 @@ export const drawRect = (detections, ctx) => {
 
     // Draw bounding box and label
     ctx.strokeRect(x, y, width, height);
-    ctx.fillText(label, x, y);
+    ctx.fillText(label, x, y - 10);
   });
 };

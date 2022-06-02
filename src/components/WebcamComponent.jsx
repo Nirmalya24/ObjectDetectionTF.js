@@ -60,6 +60,7 @@ function WebcamComponent() {
   return (
     <div>
       <Webcam
+        mirrored={true} 
         ref={webcamRef}
         muted={true}
         style={{

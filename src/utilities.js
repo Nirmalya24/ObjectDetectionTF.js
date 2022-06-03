@@ -3,6 +3,7 @@ export const drawRect = (detections, ctx) => {
     // Get prediction result
     const [x, y, width, height] = detection.bbox;
     const label = detection.class;
+    const roundScore = (detection.score.toFixed(2))*100;
 
     // Styling
     const color = "blue";
@@ -13,6 +14,6 @@ export const drawRect = (detections, ctx) => {
 
     // Draw bounding box and label
     ctx.strokeRect(x, y, width, height);
-    ctx.fillText(label, x, y - 10);
+    ctx.fillText(label + " " + roundScore+ "% Accurate", x, y - 10);
   });
 };

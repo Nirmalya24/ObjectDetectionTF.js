@@ -34,7 +34,6 @@ const Camera = () => {
 
   const [container, setContainer] = useState({ width: 0, height: 0 });
   const facingMode = useRecoilValue(facingModeState);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [detectionLoop, setDetectionLoop] = useState(null);
 
   const videoConstraints = {
@@ -109,14 +108,14 @@ const Camera = () => {
         // console.log(detections);
 
         // Draw bounding boxes
-        // TODO: Fix mirror bounding box issue
         const ctx = canvasRef.current.getContext("2d");
-        console.log(videoHeight);
-        if (!(facingMode === "environment" && isMobile)) {
-          ctx.setTransform(1, 0, -1, 0, 0, videoHeight);
-        }
-
-        drawRect(detections, ctx, !(facingMode === "environment" && isMobile));
+        // console.log(videoWidth);
+        drawRect(
+          detections,
+          ctx,
+          videoWidth,
+          !(facingMode === "environment" && isMobile)
+        );
       }
     };
   };
@@ -152,7 +151,7 @@ const Camera = () => {
               videoConstraints={videoConstraints}
             />
 
-            <Overlay hidden={isVideoPlaying} />
+            <Overlay />
 
             <Canvas
               ref={canvasRef}

@@ -79,12 +79,12 @@ const Camera = () => {
         const videoHeight = webcamRef.current.video.videoHeight;
 
         // Set video width and height
-        webcamRef.current.width = videoWidth;
-        webcamRef.current.height = videoHeight;
+        webcamRef.current.width = container.width;
+        webcamRef.current.height = container.height;
 
         // Set canvas width and height
-        canvasRef.current.width = videoWidth;
-        canvasRef.current.height = videoHeight;
+        canvasRef.current.width = container.width;
+        canvasRef.current.height = container.height;
 
         // Make detections
         const detections = await net.detect(video);
@@ -97,7 +97,7 @@ const Camera = () => {
         drawRect(
           detections,
           ctx,
-          videoWidth,
+          container.width,
           !(facingMode === "environment" && isMobile)
         );
       }

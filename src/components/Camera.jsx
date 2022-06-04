@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Measure from "react-measure";
 import { useUserMedia } from "./hooks/useUserMedia";
-import { useCardRatio } from "./hooks/useCardRatio";
 import { useOffsets } from "./hooks/useOffsets";
 import { Canvas, Wrapper, Container, Overlay } from "./CameraStyle";
 import { useRecoilValue } from "recoil";
@@ -10,7 +9,6 @@ import Alert from "./Alert";
 import Webcam from "react-webcam";
 import { isMobile } from "react-device-detect";
 // Tensoflow
-import * as tf from "@tensorflow/tfjs";
 import * as cocossd from "@tensorflow-models/coco-ssd";
 import { drawRect } from "../utilities";
 
@@ -34,14 +32,13 @@ const Camera = () => {
 
   const [container, setContainer] = useState({ width: 0, height: 0 });
   const facingMode = useRecoilValue(facingModeState);
-  const [detectionLoop, setDetectionLoop] = useState(null);
 
   const videoConstraints = {
     facingMode: facingMode,
   };
 
   const mediaStream = useUserMedia(CAPTURE_OPTIONS);
-  const [aspectRatio, calculateRatio] = useCardRatio(1.586);
+  const aspectRatio = 1.586;
   const offsets = useOffsets(
     videoRef.current && videoRef.current.videoWidth,
     videoRef.current && videoRef.current.videoHeight,
@@ -63,11 +60,10 @@ const Camera = () => {
     console.log("Loading network");
 
     // Loop and detect hands
-    setDetectionLoop(
-      setInterval(() => {
-        detect();
-      }, 10)
-    );
+
+    setInterval(() => {
+      detect();
+    }, 10);
 
     const detect = async () => {
       if (

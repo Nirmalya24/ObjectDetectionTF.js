@@ -1,8 +1,11 @@
-export const drawRect = (detections, ctx) => {
+export const drawRect = (detections, ctx, videoWidth, mirrored) => {
   detections.forEach((detection) => {
     // Get prediction result
-    const [x, y, width, height] = detection.bbox;
+    let [x, y, width, height] = detection.bbox;
     const label = detection.class;
+    if (mirrored) {
+      x = Math.abs(videoWidth - x - width);
+    }
 
     // Styling
     const color = "blue";

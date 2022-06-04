@@ -1,6 +1,6 @@
 @media (prefers-reduced-motion: no-preference) {
   .icon-spin {
-    animation: icon-spin infinite 20s linear;
+    animation: icon-spin infinite 10s linear;
   }
 }
 

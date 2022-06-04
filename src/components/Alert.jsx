@@ -62,7 +62,7 @@ const Alert = ({ message, type }) => {
     ),
   };
   return (
-    <div className={`alert alert-${type} shadow-lg`}>
+    <div className={`alert alert-${type} shadow-lg mb-10`}>
       <div>
         {icons[type]}
         <span>{message}</span>

@@ -1,4 +1,4 @@
-export const drawRect = (detections, ctx) => {
+export const drawRect = (detections, ctx, mirrored) => {
   detections.forEach((detection) => {
     // Get prediction result
     const [x, y, width, height] = detection.bbox;

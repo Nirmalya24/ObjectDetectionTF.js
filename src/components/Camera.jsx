@@ -49,25 +49,12 @@ const Camera = () => {
     container.height
   );
 
-  // TODO: Code clean up
-  // if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
-  //   videoRef.current.srcObject = mediaStream;
-  //   console.log("VideoRef.current", videoRef.current);
-  // }
-
   const handleResize = (contentRect) => {
     setContainer({
       width: contentRect.bounds.width,
       height: Math.round(contentRect.bounds.width / aspectRatio),
     });
   };
-
-  // TODO: Code Clean up
-  // const handleCanPlay = () => {
-  //   calculateRatio(videoRef.current.videoHeight, videoRef.current.videoWidth);
-  //   setIsVideoPlaying(true);
-  //   videoRef.current.play();
-  // };
 
   // Main Function
   const runCoco = async () => {
@@ -83,8 +70,6 @@ const Camera = () => {
     );
 
     const detect = async () => {
-      // Check if data is available
-      // console.log("videoRef.current", webcamRef.current);
       if (
         typeof webcamRef.current !== "undefined" &&
         webcamRef.current !== null &&
@@ -140,7 +125,6 @@ const Camera = () => {
               mirrored={facingMode === "environment" && isMobile ? false : true}
               ref={webcamRef}
               muted={true}
-              // onCanPlay={handleCanPlay}
               playsInline
               width="100%"
               height="100%"

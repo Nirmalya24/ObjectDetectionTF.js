@@ -76,7 +76,7 @@ const Camera = () => {
         // Get video properties
         const video = webcamRef.current.video;
         const videoWidth = webcamRef.current.video.videoWidth;
-        const videoHeight = webcamRef.current.video.videoHeight;
+        // const videoHeight = webcamRef.current.video.videoHeight;
 
         // Set video width and height
         webcamRef.current.width = container.width;

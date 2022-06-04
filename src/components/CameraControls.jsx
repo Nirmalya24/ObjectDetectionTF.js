@@ -17,12 +17,6 @@ const CameraControls = () => {
   const [isCameraOpen, setIsCameraOpen] = useRecoilState(isCameraOpenState);
   const [facingMode, setFacingMode] = useRecoilState(facingModeState);
 
-  const cameraOpenToggle = () => {
-    setIsCameraOpen(!isCameraOpen);
-    // TODO: Delete for production
-    console.log("Camera toggle clicked. Current state: ", isCameraOpen);
-  };
-
   const cameraFacingModeToggle = () => {
     if (isCameraOpen) {
       if (facingMode === "environment") {

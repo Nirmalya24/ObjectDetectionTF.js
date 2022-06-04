@@ -9,6 +9,8 @@ import Alert from "./Alert";
 import Webcam from "react-webcam";
 import { isMobile } from "react-device-detect";
 // Tensoflow
+// eslint-disable-next-line no-unused-vars
+import * as tf from "@tensorflow/tfjs";
 import * as cocossd from "@tensorflow-models/coco-ssd";
 import { drawRect } from "../utilities";
 
@@ -19,7 +21,7 @@ const CAPTURE_OPTIONS = {
 
 const Camera = () => {
   const canvasRef = useRef(null);
-  const videoRef = useRef(null);
+
   const webcamRef = useRef(null);
   useEffect(() => {
     if (
@@ -40,8 +42,8 @@ const Camera = () => {
   const mediaStream = useUserMedia(CAPTURE_OPTIONS);
   const aspectRatio = 1.586;
   const offsets = useOffsets(
-    videoRef.current && videoRef.current.videoWidth,
-    videoRef.current && videoRef.current.videoHeight,
+    webcamRef.current && webcamRef.current.videoWidth,
+    webcamRef.current && webcamRef.current.videoHeight,
     container.width,
     container.height
   );
@@ -90,7 +92,8 @@ const Camera = () => {
 
         // Draw bounding boxes
         const ctx = canvasRef.current.getContext("2d");
-        // console.log(videoWidth);
+        console.log(videoWidth);
+
         drawRect(
           detections,
           ctx,
@@ -111,8 +114,8 @@ const Camera = () => {
         <Wrapper>
           <Container
             ref={measureRef}
-            maxWidth={videoRef.current && videoRef.current.videoWidth}
-            maxHeight={videoRef.current && videoRef.current.videoHeight}
+            maxWidth={webcamRef.current && webcamRef.current.videoWidth}
+            maxHeight={webcamRef.current && webcamRef.current.videoHeight}
             style={{
               height: `${container.height}px`,
             }}

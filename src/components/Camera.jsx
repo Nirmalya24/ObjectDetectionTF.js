@@ -75,7 +75,7 @@ const Camera = () => {
       ) {
         // Get video properties
         const video = webcamRef.current.video;
-        const videoWidth = webcamRef.current.video.videoWidth;
+        // const videoWidth = webcamRef.current.video.videoWidth;
         // const videoHeight = webcamRef.current.video.videoHeight;
 
         // Set video width and height
@@ -92,14 +92,14 @@ const Camera = () => {
 
         // Draw bounding boxes
         const ctx = canvasRef.current.getContext("2d");
-        console.log(videoWidth);
+        if (!(facingMode === "environment" && isMobile)) {
+          ctx.setTransform(-1, 0, 0, 1, container.width, 0);
+        } else {
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+        }
+        console.log(container.height, container.width);
 
-        drawRect(
-          detections,
-          ctx,
-          container.width,
-          !(facingMode === "environment" && isMobile)
-        );
+        drawRect(detections, ctx);
       }
     };
   };

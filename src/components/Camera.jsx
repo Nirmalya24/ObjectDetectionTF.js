@@ -112,6 +112,7 @@ const Camera = () => {
     <Measure bounds onResize={handleResize}>
       {({ measureRef }) => (
         <Wrapper>
+          
           <Container
             ref={measureRef}
             maxWidth={webcamRef.current && webcamRef.current.videoWidth}
@@ -128,6 +129,7 @@ const Camera = () => {
               width="100%"
               height="100%"
               style={{
+                zIndex:8,
                 top: `-${offsets.y}px`,
                 left: `-${offsets.x}px`,
               }}
@@ -138,9 +140,14 @@ const Camera = () => {
 
             <Canvas
               ref={canvasRef}
-              width={container.width}
-              height={container.height}
+              width="100%"
+              height="100%"
               className="border-5 border-blue-500"
+              style={{
+                zIndex:9,
+                top: `-${offsets.y}px`,
+                left: `-${offsets.x}px`,
+              }}
             />
           </Container>
         </Wrapper>

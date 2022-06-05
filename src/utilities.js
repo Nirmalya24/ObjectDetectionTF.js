@@ -3,6 +3,8 @@ export const drawRect = (detections, ctx, videoWidth, mirrored) => {
     // Get prediction result
     let [x, y, width, height] = detection.bbox;
     const label = detection.class;
+    const roundScore = (detection.score.toFixed(2))*100;
+
     if (mirrored) {
       x = Math.abs(videoWidth - x - width);
     }
@@ -16,6 +18,6 @@ export const drawRect = (detections, ctx, videoWidth, mirrored) => {
 
     // Draw bounding box and label
     ctx.strokeRect(x, y, width, height);
-    ctx.fillText(label, x, y - 10);
+    ctx.fillText(label + " " + roundScore+ "% Accurate", x, y - 10);
   });
 };

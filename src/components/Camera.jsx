@@ -75,10 +75,6 @@ const Camera = () => {
       ) {
         // Get video properties
         const video = webcamRef.current.video;
-        // eslint-disable-next-line no-unused-vars
-        // const videoWidth = webcamRef.current.video.videoWidth;
-        // eslint-disable-next-line no-unused-vars
-        // const videoHeight = webcamRef.current.video.videoHeight;
 
         // Set video width and height
         webcamRef.current.width = container.width;
@@ -90,7 +86,7 @@ const Camera = () => {
 
         // Make detections
         const detections = await net.detect(video);
-        // console.log(detections);
+        console.log(detections);
 
         // Draw bounding boxes
         const ctx = canvasRef.current.getContext("2d");
@@ -99,16 +95,6 @@ const Camera = () => {
         } else {
           ctx.setTransform(1, 0, 0, 1, 0, 0);
         }
-
-        // console.log(
-        //   `Container width: ${container.width}, height: ${container.height}`
-        // ); // 992, 625 | 0,0
-        // console.log(
-        //   `Webcam width: ${webcamRef.current.video.videoWidth}, height: ${webcamRef.current.video.videoHeight}`
-        // ); //640,480
-        // console.log(
-        //   `Canvas width: ${canvasRef.current.width}, height: ${canvasRef.current.height}`
-        // ); // 992, 625 | 0,0
 
         drawRect(detections, ctx);
       }
@@ -136,7 +122,9 @@ const Camera = () => {
               ref={webcamRef}
               muted={true}
               playsInline
-              className="w-fit h-fit"
+              className="w-full h-full"
+              width={container.width}
+              height={container.height}
               style={{
                 zIndex: 8,
                 top: `-${offsets.y}px`,
@@ -150,6 +138,8 @@ const Camera = () => {
             <Canvas
               ref={canvasRef}
               className="border-5 border-blue-500 w-fit h-fit"
+              width={container.width}
+              height={container.height}
               style={{
                 zIndex: 9,
                 top: `-${offsets.y}px`,

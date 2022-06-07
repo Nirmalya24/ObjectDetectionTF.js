@@ -6,7 +6,7 @@ export const drawRect = (detections, ctx) => {
     const roundScore = detection.score.toFixed(2) * 100;
 
     // Styling
-    const color = "blue";
+    const color = "red";
     ctx.strokeStyle = color;
     ctx.font = "16px Arial";
     ctx.fillStyle = color;
@@ -15,7 +15,7 @@ export const drawRect = (detections, ctx) => {
     // Draw bounding box and label
     ctx.strokeRect(x, y, width, height);
     // Reset context for rendering label
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    // ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillText(label + " " + roundScore + "% Accurate", x, y - 10);
   });
 };

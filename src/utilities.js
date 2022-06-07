@@ -14,6 +14,8 @@ export const drawRect = (detections, ctx) => {
 
     // Draw bounding box and label
     ctx.strokeRect(x, y, width, height);
+    // Reset context for rendering label
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.fillText(label + " " + roundScore + "% Accurate", x, y - 10);
   });
 };
